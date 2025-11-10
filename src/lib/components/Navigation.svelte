@@ -11,11 +11,10 @@
 
 <nav class="navbar">
   <div class="nav-container">
-    <div class="nav-logo">
-      <a href="{base}/">
-        <h2>Assemblies of God Ottawa</h2>
-      </a>
-    </div>
+    <a href="{base}/" class="nav-logo">
+      <img src="{base}/aog-logo.png" alt="Assemblies of God Ottawa Logo" class="logo-img" />
+      <h2>Assemblies of God Ottawa</h2>
+    </a>
     
     <!-- Desktop Navigation -->
     <div class="nav-menu">
@@ -61,9 +60,16 @@
     height: 80px;
   }
 
-  .nav-logo a {
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     text-decoration: none;
     color: inherit;
+  }
+
+  .logo-img {
+    height: 50px;
   }
 
   .nav-logo h2 {
