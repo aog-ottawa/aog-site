@@ -1,35 +1,27 @@
 <script>
-  import { onMount } from 'svelte';
-  import { page } from '$app/stores';
+	import { page } from '$app/stores';
+	import { base } from '$app/paths';
 
-  let isMenuOpen = false;
-  let activePath = '';
+	let isMenuOpen = false;
 
-  onMount(() => {
-    const unsubscribe = page.subscribe(p => {
-      activePath = p.url.pathname;
-    });
-    return unsubscribe;
-  });
-
-  function toggleMenu() {
-    isMenuOpen = !isMenuOpen;
-  }
+	function toggleMenu() {
+		isMenuOpen = !isMenuOpen;
+	}
 </script>
 
 <nav class="navbar">
   <div class="nav-container">
     <div class="nav-logo">
-      <a href="/">
+      <a href="{base}/">
         <h2>Assemblies of God Ottawa</h2>
       </a>
     </div>
     
     <!-- Desktop Navigation -->
     <div class="nav-menu">
-      <a href="/about" class="nav-link" class:active={activePath.includes('/about')}>About us</a>
-      <a href="/#news" class="nav-link" class:active={activePath === '/'}>News</a>
-      <a href="/visit" class="nav-link" class:active={activePath.includes('/visit')}>Visit</a>
+      <a href="{base}/about" class="nav-link" class:active={$page.url.pathname.includes('/about')}>About us</a>
+      <a href="{base}/#news" class="nav-link" class:active={$page.url.pathname === '/'}>News</a>
+      <a href="{base}/visit" class="nav-link" class:active={$page.url.pathname.includes('/visit')}>Visit</a>
     </div>
 
     <!-- Mobile Menu Button -->
@@ -42,9 +34,9 @@
 
   <!-- Mobile Menu -->
   <div class="mobile-nav" class:open={isMenuOpen}>
-    <a href="/about" class="mobile-nav-link" on:click={toggleMenu}>About us</a>
-    <a href="/#news" class="mobile-nav-link" on:click={toggleMenu}>News</a>
-    <a href="/visit" class="mobile-nav-link" on:click={toggleMenu}>Visit</a>
+    <a href="{base}/about" class="mobile-nav-link" on:click={toggleMenu}>About us</a>
+    <a href="{base}/#news" class="mobile-nav-link" on:click={toggleMenu}>News</a>
+    <a href="{base}/visit" class="mobile-nav-link" on:click={toggleMenu}>Visit</a>
   </div>
 </nav>
 

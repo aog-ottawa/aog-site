@@ -1,5 +1,6 @@
 <script>
   import Navigation from '$lib/components/Navigation.svelte';
+  import { base } from '$app/paths';
 </script>
 
 <svelte:head>
@@ -207,7 +208,7 @@
     justify-content: center;
     text-align: center;
     min-height: 60vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/dove.webp') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{base}/dove.webp') no-repeat center center/cover;
     color: white;
     padding: 2rem;
   }

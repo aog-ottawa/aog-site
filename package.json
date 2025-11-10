@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
+		"build:gh-pages": "cross-env GITHUB_PAGES=true vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -14,6 +15,7 @@
 		"lint": "prettier --check . && eslint ."
 	},
 	"devDependencies": {
+		"cross-env": "^7.0.3",
 		"@eslint/compat": "^1.4.0",
 		"@eslint/js": "^9.38.0",
 		"@sveltejs/adapter-cloudflare": "^7.2.4",
