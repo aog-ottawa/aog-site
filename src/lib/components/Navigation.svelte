@@ -19,7 +19,7 @@
     <!-- Desktop Navigation -->
     <div class="nav-menu">
       <a href="{base}/about" class="nav-link" class:active={$page.url.pathname.includes('/about')}>About us</a>
-      <a href="{base}/#news" class="nav-link" class:active={$page.url.pathname === '/'}>News</a>
+      <a href="{base}/news" class="nav-link" class:active={$page.url.pathname.includes('/news')}>News</a>
       <a href="{base}/visit" class="nav-link" class:active={$page.url.pathname.includes('/visit')}>Visit</a>
     </div>
 
@@ -34,7 +34,7 @@
   <!-- Mobile Menu -->
   <div class="mobile-nav" class:open={isMenuOpen}>
     <a href="{base}/about" class="mobile-nav-link" on:click={toggleMenu}>About us</a>
-    <a href="{base}/#news" class="mobile-nav-link" on:click={toggleMenu}>News</a>
+    <a href="{base}/news" class="mobile-nav-link" on:click={toggleMenu}>News</a>
     <a href="{base}/visit" class="mobile-nav-link" on:click={toggleMenu}>Visit</a>
   </div>
 </nav>
