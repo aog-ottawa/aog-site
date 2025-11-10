@@ -16,7 +16,7 @@
 
   <!-- Title Section -->
   <div class="title-container">
-    <h1 class="page-title">"Where the Spirit of the Lord is, there is freedom."<br>— <em>2 Corinthians 3:17</em></h1>
+    <h1 class="page-title">"1Where the Spirit of the Lord is, there is freedom."<br>— <em>2 Corinthians 3:17</em></h1>
   </div>
 
   <!-- Hero Section -->
