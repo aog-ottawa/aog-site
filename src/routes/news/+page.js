@@ -1,5 +1,5 @@
 export const load = async ({ fetch }) => {
-  const res = await fetch('https://docs.google.com/spreadsheets/d/e/REPLACE_WITH_YOUR_SHEET_ID/pub?output=csv');
+  const res = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQNOvtjX92oquh9aWYaMmJCaM2BahCIqEh9d0KNBgVzy_VU49_TwLkXFxEizQApaYCgtAPmHXGMD4_G/pub?gid=0&single=true&output=csv');
   const text = await res.text();
 
   // Parse CSV into JSON
