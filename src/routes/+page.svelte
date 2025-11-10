@@ -20,7 +20,7 @@
   </div>
 
   <!-- Hero Section -->
-  <header class="hero-section">
+  <header class="hero-section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{base}/dove.webp');">
     <div class="hero-content">
       <p class="hero-subtitle">A vibrant community of faith in the heart of Ottawa.</p>
     </div>
@@ -100,7 +100,9 @@
     justify-content: center;
     text-align: center;
     min-height: 90vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{base}/dove.webp') no-repeat center center/cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
     color: white;
     padding: 2rem;
   }

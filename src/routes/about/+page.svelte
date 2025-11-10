@@ -15,7 +15,7 @@
   <Navigation />
 
   <!-- Hero Section -->
-  <header class="hero-section">
+  <header class="hero-section" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{base}/dove.webp');">
     <div class="hero-content">
       <h1 class="hero-title">About Us</h1>
       <p class="hero-subtitle">Discover our mission, vision, and the heart of our community</p>
@@ -138,7 +138,9 @@
     justify-content: center;
     text-align: center;
     min-height: 60vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{base}/dove.webp') no-repeat center center/cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
     color: white;
     padding: 2rem;
   }
