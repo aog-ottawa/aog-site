@@ -3,6 +3,9 @@ export const load = async ({ fetch }) => {
   const text = await res.text();
 
   // --- Improved CSV Parser (handles quoted fields, commas, and URLs) ---
+  /**
+   * @param {string} text - CSV text to parse
+   */
   function parseCSV(text) {
     const rows = [];
     let currentRow = [];
