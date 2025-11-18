@@ -1,10 +1,11 @@
 <script>
   import Navigation from '$lib/components/Navigation.svelte';
+  import Footer from '$lib/components/Footer.svelte';
   import { base } from '$app/paths';
   import { onMount } from 'svelte';
-  
+
   let mounted = false;
-  
+
   onMount(() => {
     mounted = true;
   });
@@ -29,9 +30,6 @@
         <span class="title-line">about us</span>
       </h1>
       <p class="hero-subtitle">Discover our mission, vision, and the heart of our community</p>
-      <div class="dove-container">
-        <img src="{base}/dove.webp" alt="Holy Spirit" class="dove-image" />
-      </div>
     </div>
   </header>
 
@@ -73,7 +71,7 @@
           <h3>salvation</h3>
           <p>We believe salvation is by grace through faith in Jesus Christ, who died for our sins and rose again.</p>
         </div>
-        <div class="belief-card">
+        <div class="belief-card centered-card">
           <div class="card-icon">🔥</div>
           <h3>holy spirit</h3>
           <p>We believe in the present ministry of the Holy Spirit, who empowers believers for spiritual life and service.</p>
@@ -112,7 +110,7 @@
           <h3>service</h3>
           <p>We believe every believer is called to serve, and we actively seek opportunities to serve both our church family and the broader community.</p>
         </div>
-        <div class="value-card">
+        <div class="value-card centered-card">
           <div class="value-icon">🌱</div>
           <h3>growth</h3>
           <p>We are committed to personal and spiritual growth, encouraging each person to discover and develop their God-given gifts and calling.</p>
@@ -135,12 +133,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p class="footer-verse">"For where two or three gather in my name, there am I with them." — Matthew 18:20</p>
-      <p class="footer-copyright">&copy; {new Date().getFullYear()} Assemblies of God Ottawa. All rights reserved.</p>
-    </div>
-  </footer>
+  <Footer />
 </main>
 
 <style>
@@ -271,31 +264,6 @@
     animation: fade-in-up 1s ease-out 0.5s forwards;
   }
 
-  .dove-container {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-    opacity: 0;
-    animation: fade-in-scale 1.2s ease-out 0.8s forwards;
-  }
-
-  .dove-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 12px rgba(107, 28, 35, 0.2));
-  }
-
-  @keyframes fade-in-scale {
-    from {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
 
   /* Content Sections */
   .container {
@@ -518,6 +486,12 @@
     margin: 0;
   }
 
+  .centered-card {
+    grid-column: 1 / -1;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
   /* CTA Section */
   .cta-section {
     position: relative;
@@ -591,31 +565,6 @@
     box-shadow: 0 8px 30px rgba(232, 212, 184, 0.2);
   }
 
-  /* Footer */
-  .footer {
-    background: linear-gradient(135deg, var(--color-dark-brown) 0%, var(--color-burgundy) 100%);
-    color: var(--color-pale-gold);
-    text-align: center;
-    padding: 4rem 2rem;
-    margin-top: auto;
-  }
-
-  .footer-verse {
-    font-family: var(--font-body);
-    font-size: 1.2rem;
-    font-style: italic;
-    margin: 0 0 2rem 0;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.8;
-  }
-
-  .footer-copyright {
-    font-size: 0.95rem;
-    margin: 0;
-    opacity: 0.8;
-  }
 
   /* Responsive Design */
   @media (max-width: 768px) {

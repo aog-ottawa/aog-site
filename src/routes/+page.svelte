@@ -1,10 +1,11 @@
 <script>
   import Navigation from '$lib/components/Navigation.svelte';
+  import Footer from '$lib/components/Footer.svelte';
   import { base } from '$app/paths';
   import { onMount } from 'svelte';
-  
+
   let mounted = false;
-  
+
   onMount(() => {
     mounted = true;
   });
@@ -32,7 +33,7 @@
       </h1>
       <p class="scripture-ref">2 Corinthians 3:17</p>
       <div class="dove-container">
-        <img src="{base}/dove.webp" alt="Holy Spirit" class="dove-image" />
+        <img src="{base}/aog-logo.png" alt="Assemblies of God Ottawa Logo" class="dove-image" />
       </div>
       <p class="hero-subtitle">A vibrant community of faith in the heart of Ottawa</p>
     </div>
@@ -86,12 +87,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p class="footer-verse">"For where two or three gather in my name, there am I with them." — Matthew 18:20</p>
-      <p class="footer-copyright">&copy; {new Date().getFullYear()} Assemblies of God Ottawa. All rights reserved.</p>
-    </div>
-  </footer>
+  <Footer />
 </main>
 
 <style>
@@ -496,31 +492,6 @@
     box-shadow: 0 8px 30px rgba(232, 212, 184, 0.2);
   }
 
-  /* Footer */
-  .footer {
-    background: linear-gradient(135deg, var(--color-dark-brown) 0%, var(--color-burgundy) 100%);
-    color: var(--color-pale-gold);
-    text-align: center;
-    padding: 4rem 2rem;
-    margin-top: auto;
-  }
-
-  .footer-verse {
-    font-family: var(--font-body);
-    font-size: 1.2rem;
-    font-style: italic;
-    margin: 0 0 2rem 0;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.8;
-  }
-
-  .footer-copyright {
-    font-size: 0.95rem;
-    margin: 0;
-    opacity: 0.8;
-  }
 
   /* Responsive Design */
   @media (max-width: 768px) {

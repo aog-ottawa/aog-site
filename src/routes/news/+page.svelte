@@ -1,14 +1,15 @@
 <script>
   import Navigation from '$lib/components/Navigation.svelte';
+  import Footer from '$lib/components/Footer.svelte';
   import { base } from '$app/paths';
   import { onMount } from 'svelte';
-  
+
   /** @type {{ posts?: any[] }} */
   export let data;
   const posts = data?.posts || [];
-  
+
   let mounted = false;
-  
+
   onMount(() => {
     mounted = true;
   });
@@ -32,7 +33,8 @@
       <div class="ornament top"></div>
       <h1 class="page-title">
         <span class="title-accent">news</span>
-        <span class="title-main">& updates</span>
+        <span class="title-main">&</span>
+        <span class="title-main">updates</span>
       </h1>
       <p class="page-subtitle">Staying Connected in Faith and Fellowship</p>
       <div class="ornament bottom"></div>
@@ -99,13 +101,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="news-footer">
-    <div class="footer-glow"></div>
-    <div class="footer-content">
-      <p class="footer-verse">"For where two or three gather in my name, there am I with them." — Matthew 18:20</p>
-      <p class="footer-copyright">&copy; {new Date().getFullYear()} Assemblies of God Ottawa. All rights reserved.</p>
-    </div>
-  </footer>
+  <Footer />
 </main>
 
 <style>
@@ -532,49 +528,6 @@
     left: calc(100% + 1rem);
   }
 
-  /* ===== Footer ===== */
-  .news-footer {
-    position: relative;
-    background: linear-gradient(135deg, var(--color-dark-brown) 0%, var(--color-burgundy) 100%);
-    color: var(--color-pale-gold);
-    text-align: center;
-    padding: 4rem 2rem;
-    margin-top: 4rem;
-    overflow: hidden;
-  }
-
-  .footer-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(212, 165, 116, 0.15) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-  }
-
-  .footer-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .footer-verse {
-    font-family: var(--font-editorial);
-    font-size: 1.25rem;
-    font-style: italic;
-    margin: 0 0 2rem 0;
-    line-height: 1.8;
-  }
-
-  .footer-copyright {
-    font-size: 0.95rem;
-    margin: 0;
-    opacity: 0.8;
-  }
 
   /* ===== Responsive Design ===== */
   @media (max-width: 768px) {
@@ -661,13 +614,6 @@
       width: 30px;
     }
 
-    .news-footer {
-      padding: 3rem 1.5rem;
-    }
-
-    .footer-verse {
-      font-size: 1.1rem;
-    }
   }
 
   @media (max-width: 480px) {

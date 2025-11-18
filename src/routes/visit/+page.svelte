@@ -1,5 +1,6 @@
 <script lang="ts">
   import Navigation from '$lib/components/Navigation.svelte';
+  import Footer from '$lib/components/Footer.svelte';
   import { base } from '$app/paths';
   import { onMount } from 'svelte';
   import 'leaflet/dist/leaflet.css';
@@ -45,9 +46,6 @@
         <span class="title-line">visit us</span>
       </h1>
       <p class="hero-subtitle">We would love to welcome you to our church family</p>
-      <div class="dove-container">
-        <img src="{base}/dove.webp" alt="Holy Spirit" class="dove-image" />
-      </div>
     </div>
   </header>
 
@@ -208,12 +206,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p class="footer-verse">"For where two or three gather in my name, there am I with them." — Matthew 18:20</p>
-      <p class="footer-copyright">&copy; {new Date().getFullYear()} Assemblies of God Ottawa. All rights reserved.</p>
-    </div>
-  </footer>
+  <Footer />
 </main>
 
 <style>
@@ -254,13 +247,13 @@
   /* Hero Section */
   .hero-section {
     position: relative;
-    min-height: 75vh;
+    min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 4rem 2rem;
-    background: 
+    padding: 3rem 2rem;
+    background:
       radial-gradient(ellipse at center top, var(--color-pale-gold) 0%, transparent 60%),
       radial-gradient(ellipse at 80% 70%, rgba(184, 87, 61, 0.08) 0%, transparent 50%),
       radial-gradient(ellipse at 20% 80%, rgba(212, 165, 116, 0.1) 0%, transparent 50%),
@@ -344,32 +337,6 @@
     animation: fade-in-up 1s ease-out 0.5s forwards;
   }
 
-  .dove-container {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-    opacity: 0;
-    animation: fade-in-scale 1.2s ease-out 0.8s forwards;
-  }
-
-  .dove-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 12px rgba(107, 28, 35, 0.2));
-  }
-
-  @keyframes fade-in-scale {
-    from {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
   /* Content Sections */
   .container {
     max-width: 1100px;
@@ -379,7 +346,7 @@
 
   .content-section {
     position: relative;
-    padding: 6rem 0;
+    padding: 4rem 0;
     text-align: center;
   }
 
@@ -594,8 +561,9 @@
   }
 
   .map-container {
-    height: 450px;
+    height: 100%;
     width: 100%;
+    min-height: 450px;
   }
 
   /* Expect Section */
@@ -606,9 +574,14 @@
 
   .expect-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
     margin-top: 4rem;
+    justify-items: center;
+  }
+  
+  .expect-grid .expect-card:nth-child(4) {
+    grid-column: 2;
   }
 
   .expect-card {
@@ -879,31 +852,6 @@
     box-shadow: 0 8px 30px rgba(232, 212, 184, 0.2);
   }
 
-  /* Footer */
-  .footer {
-    background: linear-gradient(135deg, var(--color-dark-brown) 0%, var(--color-burgundy) 100%);
-    color: var(--color-pale-gold);
-    text-align: center;
-    padding: 4rem 2rem;
-    margin-top: auto;
-  }
-
-  .footer-verse {
-    font-family: var(--font-body);
-    font-size: 1.2rem;
-    font-style: italic;
-    margin: 0 0 2rem 0;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.8;
-  }
-
-  .footer-copyright {
-    font-size: 0.95rem;
-    margin: 0;
-    opacity: 0.8;
-  }
 
   /* Responsive Design */
   @media (min-width: 768px) {
@@ -913,7 +861,7 @@
 
     .location-content {
       grid-template-columns: 1fr 1.2fr;
-      align-items: start;
+      align-items: stretch;
     }
 
     .submit-btn {
@@ -932,9 +880,17 @@
     }
 
     .services-grid,
-    .expect-grid,
     .bring-grid {
       gap: 2rem;
+    }
+    
+    .expect-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .expect-grid .expect-card:nth-child(4) {
+      grid-column: 1;
     }
 
     .contact-form {
