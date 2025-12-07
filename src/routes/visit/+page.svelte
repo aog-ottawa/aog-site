@@ -1,3 +1,7 @@
+<script context="module" lang="ts">
+  declare const lucide: any;
+</script>
+
 <script lang="ts">
   import Navigation from '$lib/components/Navigation.svelte';
   import Footer from '$lib/components/Footer.svelte';
@@ -13,6 +17,7 @@
   // Form state management
   let isSubmitting = false;
   let submitStatus: 'idle' | 'success' | 'error' = 'idle';
+  let honeypot = ''; // Honeypot field for bot detection
   let formData = {
     name: '',
     email: '',
@@ -26,35 +31,40 @@
 
   async function handleSubmit(event: Event) {
     event.preventDefault();
-    
+
+    // Honeypot check for bot detection
+    if (honeypot.trim() !== '') {
+      submitStatus = 'error';
+      isSubmitting = false;
+      return;
+    }
+
     // Reset status
     submitStatus = 'idle';
     isSubmitting = true;
 
     try {
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'text/plain'
         },
         body: JSON.stringify(formData)
       });
 
-      const result = await response.json();
+      // Opaque response received = Success
+      submitStatus = 'success';
+      // Clear form
+      formData = {
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+        date: ''
+      };
+      honeypot = ''; // Clear honeypot
 
-      if (result.success) {
-        submitStatus = 'success';
-        // Clear form
-        formData = {
-          name: '',
-          email: '',
-          phone: '',
-          message: '',
-          date: ''
-        };
-      } else {
-        submitStatus = 'error';
-      }
     } catch (error) {
       console.error('Form submission error:', error);
       submitStatus = 'error';
@@ -280,6 +290,15 @@
               bind:value={formData.message}
               disabled={isSubmitting}
             ></textarea>
+          </div>
+          <!-- Honeypot field for bot detection -->
+          <div class="honeypot-field" style="display: none;">
+            <input
+              type="text"
+              name="website"
+              bind:value={honeypot}
+              autocomplete="off"
+            >
           </div>
           <button type="submit" class="submit-btn" disabled={isSubmitting}>
             {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -839,8 +858,6 @@
     background-color: #f5f5f5;
     cursor: not-allowed;
     opacity: 0.6;
-  }
-
   }
 
   /* CTA Section */

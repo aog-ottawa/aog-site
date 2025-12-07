@@ -10,6 +10,7 @@
   let mounted = false;
   let localPosts = data?.posts?.map(post => ({ ...post, expanded: false })) || [];
 
+  /** @param {number} index */
   function togglePost(index) {
     // Create a new array to trigger Svelte's reactivity
     localPosts = localPosts.map((post, i) =>
@@ -283,6 +284,7 @@
     flex: 1;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -292,6 +294,7 @@
   .news-card.expanded .card-excerpt {
     display: block;
     -webkit-line-clamp: none;
+    line-clamp: none;
     max-height: none;
     overflow: visible;
   }
