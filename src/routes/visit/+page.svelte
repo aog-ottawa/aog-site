@@ -12,6 +12,12 @@
 
   onMount(async () => {
     mounted = true;
+    
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+    
     if (typeof window !== 'undefined') {
       L = await import('leaflet');
       map = L.map(mapElement).setView([45.4215, -75.6972], 13);
@@ -32,7 +38,8 @@
   <meta name="description" content="Visit Assemblies of God Ottawa - Service times, location, and contact information" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </svelte:head>
 
 <main class="page-container">
@@ -40,62 +47,64 @@
 
   <!-- Hero Section -->
   <header class="hero-section">
-    <div class="radiant-glow"></div>
+    <div class="hero-overlay"></div>
     <div class="hero-content" class:visible={mounted}>
-      <h1 class="hero-title">
-        <span class="title-line">visit us</span>
-      </h1>
+      <h1 class="hero-title">VISIT US</h1>
       <p class="hero-subtitle">We would love to welcome you to our church family</p>
     </div>
   </header>
 
   <!-- Service Times Section -->
-  <section class="content-section welcome-section">
-    <div class="section-glow"></div>
+  <section class="content-section services-section">
     <div class="container">
-      <h2 class="section-title">service times</h2>
+      <h2 class="section-title">SERVICE TIMES</h2>
       <div class="services-grid">
         <div class="service-card">
-          <div class="card-icon">✝️</div>
-          <h3>sunday worship service</h3>
+          <div class="card-icon">
+            <i data-lucide="church" class="icon"></i>
+          </div>
+          <h3>Sunday Worship Service</h3>
           <p class="time">10:00 AM - 12:00 PM</p>
           <p>Join us for inspiring worship, practical teaching, and community fellowship.</p>
         </div>
         <div class="service-card">
-          <div class="card-icon">🙏</div>
-          <h3>wednesday prayer & bible study</h3>
+          <div class="card-icon">
+            <i data-lucide="book-open-text" class="icon"></i>
+          </div>
+          <h3>Wednesday Prayer & Bible Study</h3>
           <p class="time">7:00 PM - 8:30 PM</p>
           <p>Deepen your faith through prayer, Bible study, and small group discussion.</p>
         </div>
         <div class="service-card">
-          <div class="card-icon">🌟</div>
-          <h3>youth service</h3>
+          <div class="card-icon">
+            <i data-lucide="sparkles" class="icon"></i>
+          </div>
+          <h3>Youth Service</h3>
           <p class="time">Friday 7:00 PM - 9:00 PM</p>
           <p>A dynamic service designed specifically for teenagers and young adults.</p>
         </div>
       </div>
-      <div class="flame-accent"></div>
     </div>
   </section>
 
   <!-- Location Section -->
   <section class="content-section location-section">
     <div class="container">
-      <h2 class="section-title">our location</h2>
+      <h2 class="section-title">OUR LOCATION</h2>
       <div class="location-content">
         <div class="address-card">
-          <h3 class="church-name">assemblies of god ottawa</h3>
+          <h3 class="church-name">Assemblies of God Ottawa</h3>
           <div class="address">
             <p>1234 Bank Street</p>
             <p>Ottawa, ON K1S 3X3</p>
             <p>Canada</p>
           </div>
           <div class="contact-info">
-            <p><strong>phone:</strong> (613) 555-0123</p>
-            <p><strong>email:</strong> info@aogottawa.ca</p>
+            <p><strong>Phone:</strong> (613) 555-0123</p>
+            <p><strong>Email:</strong> info@aogottawa.ca</p>
           </div>
           <div class="parking-info">
-            <h4>parking</h4>
+            <h4>Parking</h4>
             <p>Free parking available on-site. Additional street parking available on Bank Street and surrounding areas.</p>
           </div>
         </div>
@@ -108,28 +117,35 @@
 
   <!-- What to Expect Section -->
   <section class="content-section expect-section">
-    <div class="section-glow"></div>
     <div class="container">
-      <h2 class="section-title">what to expect</h2>
+      <h2 class="section-title">WHAT TO EXPECT</h2>
       <div class="expect-grid">
         <div class="expect-card">
-          <div class="card-icon">👋</div>
-          <h3>friendly welcome</h3>
+          <div class="card-icon">
+            <i data-lucide="hand-heart" class="icon"></i>
+          </div>
+          <h3>Friendly Welcome</h3>
           <p>Our greeters will warmly welcome you and help you feel at home from the moment you arrive.</p>
         </div>
         <div class="expect-card">
-          <div class="card-icon">🎵</div>
-          <h3>contemporary worship</h3>
+          <div class="card-icon">
+            <i data-lucide="music" class="icon"></i>
+          </div>
+          <h3>Contemporary Worship</h3>
           <p>Experience uplifting contemporary music and heartfelt worship that draws you closer to God.</p>
         </div>
         <div class="expect-card">
-          <div class="card-icon">📖</div>
-          <h3>practical teaching</h3>
+          <div class="card-icon">
+            <i data-lucide="book-open" class="icon"></i>
+          </div>
+          <h3>Practical Teaching</h3>
           <p>Biblical messages that are relevant to your daily life and help you grow in your faith journey.</p>
         </div>
         <div class="expect-card">
-          <div class="card-icon">☕</div>
-          <h3>community fellowship</h3>
+          <div class="card-icon">
+            <i data-lucide="coffee" class="icon"></i>
+          </div>
+          <h3>Community Fellowship</h3>
           <p>Connect with others over coffee and refreshments during our fellowship time after service.</p>
         </div>
       </div>
@@ -139,21 +155,21 @@
   <!-- What to Bring Section -->
   <section class="content-section bring-section">
     <div class="container">
-      <h2 class="section-title">what to bring</h2>
+      <h2 class="section-title">WHAT TO BRING</h2>
       <div class="bring-grid">
         <div class="bring-card">
           <div class="bring-number">1</div>
-          <h3>just yourself!</h3>
+          <h3>Just Yourself!</h3>
           <p>Come as you are. We believe God's love is for everyone, regardless of what you wear or where you're coming from.</p>
         </div>
         <div class="bring-card">
           <div class="bring-number">2</div>
-          <h3>your family</h3>
+          <h3>Your Family</h3>
           <p>Children are welcome! We have a dedicated children's ministry program during the service.</p>
         </div>
         <div class="bring-card">
           <div class="bring-number">3</div>
-          <h3>an open heart</h3>
+          <h3>An Open Heart</h3>
           <p>Come with an open mind and heart ready to experience God's love and the warmth of our community.</p>
         </div>
       </div>
@@ -162,31 +178,30 @@
 
   <!-- Contact Form Section -->
   <section class="content-section contact-section">
-    <div class="section-glow"></div>
     <div class="container">
-      <h2 class="section-title">get in touch</h2>
+      <h2 class="section-title">GET IN TOUCH</h2>
       <p class="section-text">Have questions or want to learn more? We'd love to hear from you!</p>
       <div class="contact-form">
         <form>
           <div class="form-row">
             <div class="form-group">
-              <label for="name">name</label>
+              <label for="name">Name</label>
               <input type="text" id="name" name="name" required>
             </div>
             <div class="form-group">
-              <label for="email">email</label>
+              <label for="email">Email</label>
               <input type="email" id="email" name="email" required>
             </div>
           </div>
           <div class="form-group">
-            <label for="phone">phone (optional)</label>
+            <label for="phone">Phone (optional)</label>
             <input type="tel" id="phone" name="phone">
           </div>
           <div class="form-group">
-            <label for="message">message</label>
+            <label for="message">Message</label>
             <textarea id="message" name="message" rows="5" placeholder="Tell us about yourself or ask any questions..."></textarea>
           </div>
-          <button type="submit" class="submit-btn">send message</button>
+          <button type="submit" class="submit-btn">Send Message</button>
         </form>
       </div>
     </div>
@@ -194,13 +209,12 @@
 
   <!-- Call to Action -->
   <section class="content-section cta-section">
-    <div class="cta-glow"></div>
     <div class="container">
-      <h2 class="section-title">ready to visit?</h2>
-      <p class="section-text large">Join us this Sunday and experience the transforming power of worship and community</p>
+      <h2 class="section-title-alt">READY TO VISIT?</h2>
+      <p class="section-text-alt">Join us this Sunday and experience the transforming power of worship and community</p>
       <div class="cta-buttons">
-        <a href="{base}/about" class="cta-button primary">learn more about us</a>
-        <a href="{base}/news" class="cta-button secondary">latest news</a>
+        <a href="{base}/about" class="cta-button-secondary">Learn More About Us</a>
+        <a href="{base}/news" class="cta-button-tertiary">Latest News</a>
       </div>
     </div>
   </section>
@@ -211,30 +225,25 @@
 
 <style>
   :root {
-    --color-burgundy: #6B1C23;
-    --color-deep-red: #8B2635;
-    --color-burnt-sienna: #B8573D;
-    --color-golden: #D4A574;
-    --color-pale-gold: #E8D4B8;
-    --color-cream: #FDF8F3;
-    --color-parchment: #F5EFE7;
-    --color-dark-brown: #3A2520;
-    --color-text: #2A1810;
+    --color-white: #FFFFFF;
+    --color-gold: #D4AF37;
+    --color-dark: #1a1a1a;
+    --color-charcoal: #2C2C2C;
+    --color-dark-grey: #555555;
+    --color-light-cream: #F9F7F2;
+    --color-medium-gray: #e0e0e0;
     
-    --font-display: 'Cinzel', serif;
-    --font-body: 'Crimson Text', serif;
-    
-    --shadow-warm: 0 4px 20px rgba(184, 87, 61, 0.15);
-    --shadow-deep: 0 8px 40px rgba(107, 28, 35, 0.2);
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
   }
 
   :global(body) {
     margin: 0;
     padding: 0;
     font-family: var(--font-body);
-    background-color: var(--color-cream);
-    line-height: 1.8;
-    color: var(--color-text);
+    background-color: var(--color-white);
+    line-height: 1.6;
+    color: var(--color-charcoal);
     overflow-x: hidden;
   }
 
@@ -247,51 +256,37 @@
   /* Hero Section */
   .hero-section {
     position: relative;
-    min-height: 60vh;
+    height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 3rem 2rem;
-    background:
-      radial-gradient(ellipse at center top, var(--color-pale-gold) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 70%, rgba(184, 87, 61, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at 20% 80%, rgba(212, 165, 116, 0.1) 0%, transparent 50%),
-      var(--color-cream);
-    overflow: hidden;
+    background-image: url('https://source.unsplash.com/random/1920x1080/?church,welcome');
+    background-size: cover;
+    background-position: center;
   }
 
-  .radiant-glow {
+  .hero-overlay {
     position: absolute;
-    top: -10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(212, 165, 116, 0.3) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: pulse-glow 8s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  @keyframes pulse-glow {
-    0%, 100% {
-      opacity: 0.5;
-      transform: translateX(-50%) scale(1);
-    }
-    50% {
-      opacity: 0.8;
-      transform: translateX(-50%) scale(1.1);
-    }
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg, 
+      rgba(0, 0, 0, 0.5) 0%, 
+      rgba(0, 0, 0, 0.6) 100%
+    );
   }
 
   .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 800px;
+    padding: 2rem;
     opacity: 0;
     transform: translateY(30px);
-    transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .hero-content.visible {
@@ -300,119 +295,61 @@
   }
 
   .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 900;
-    color: var(--color-burgundy);
-    margin: 0 0 1.5rem 0;
-    line-height: 1.2;
-    letter-spacing: 0.03em;
-    text-transform: lowercase;
-  }
-
-  .title-line {
-    display: block;
-    opacity: 0;
-    animation: fade-in-up 1s ease-out 0.2s forwards;
-  }
-
-  @keyframes fade-in-up {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--color-white);
+    margin: 0 0 1rem 0;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
   }
 
   .hero-subtitle {
-    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-    font-weight: 600;
-    color: var(--color-dark-brown);
+    font-family: var(--font-body);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 400;
+    color: var(--color-white);
     max-width: 600px;
-    margin: 0 auto 2rem;
-    opacity: 0;
-    animation: fade-in-up 1s ease-out 0.5s forwards;
+    margin: 0 auto;
+    opacity: 0.95;
   }
 
   /* Content Sections */
   .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
   }
 
   .content-section {
-    position: relative;
-    padding: 4rem 0;
+    padding: 6rem 0;
     text-align: center;
   }
 
   .section-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
-    color: var(--color-burgundy);
+    color: var(--color-dark);
     margin: 0 0 2rem 0;
-    letter-spacing: 0.03em;
-    text-transform: lowercase;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
   .section-text {
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
-    line-height: 1.9;
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.8;
     max-width: 750px;
-    margin: 0 auto 1.5rem;
-    color: var(--color-text);
+    margin: 0 auto 2rem;
+    color: var(--color-charcoal);
   }
 
-  .section-text.large {
-    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-    font-weight: 600;
-    color: var(--color-deep-red);
+  /* Services Section */
+  .services-section {
+    background-color: var(--color-light-cream);
   }
 
-  /* Welcome Section */
-  .welcome-section {
-    position: relative;
-    background: linear-gradient(135deg, var(--color-parchment) 0%, var(--color-cream) 100%);
-  }
-
-  .section-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(212, 165, 116, 0.15) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: gentle-pulse 6s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  @keyframes gentle-pulse {
-    0%, 100% {
-      opacity: 0.6;
-      transform: translate(-50%, -50%) scale(1);
-    }
-    50% {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.05);
-    }
-  }
-
-  .flame-accent {
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, var(--color-burnt-sienna), transparent);
-    margin: 3rem auto 0;
-    box-shadow: 0 0 20px rgba(184, 87, 61, 0.4);
-  }
-
-  /* Service Cards */
   .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -421,70 +358,59 @@
   }
 
   .service-card {
-    background: var(--color-parchment);
-    padding: 3rem 2rem;
+    background: var(--color-white);
+    padding: 40px;
     border-radius: 8px;
-    border: 2px solid var(--color-pale-gold);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at top, rgba(212, 165, 116, 0.1) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   }
 
   .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-deep);
-    border-color: var(--color-golden);
-  }
-
-  .service-card:hover::before {
-    opacity: 1;
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
   }
 
   .card-icon {
-    font-size: 3rem;
     margin-bottom: 1.5rem;
-    filter: drop-shadow(0 2px 8px rgba(107, 28, 35, 0.2));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-icon :global(.icon) {
+    width: 48px;
+    height: 48px;
+    color: var(--color-gold);
+    stroke-width: 1.5;
   }
 
   .service-card h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-burgundy);
+    font-weight: 600;
+    color: var(--color-charcoal);
     margin: 0 0 1rem 0;
-    letter-spacing: 0.02em;
-    text-transform: lowercase;
   }
 
   .service-card .time {
-    font-size: 1.15rem;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
     font-weight: 700;
-    color: var(--color-golden);
+    color: var(--color-gold);
     margin: 0 0 1rem 0;
   }
 
   .service-card p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-dark-grey);
     margin: 0;
   }
 
   /* Location Section */
   .location-section {
-    background: var(--color-cream);
+    background: var(--color-white);
   }
 
   .location-content {
@@ -496,20 +422,18 @@
   }
 
   .address-card {
-    background: var(--color-parchment);
-    padding: 3rem;
+    background: var(--color-light-cream);
+    padding: 40px;
     border-radius: 8px;
-    border: 2px solid var(--color-pale-gold);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   }
 
   .church-name {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--color-burgundy);
+    color: var(--color-charcoal);
     margin: 0 0 2rem 0;
-    letter-spacing: 0.02em;
-    text-transform: lowercase;
   }
 
   .address {
@@ -519,7 +443,7 @@
   .address p {
     margin: 0 0 0.5rem 0;
     font-size: 1.1rem;
-    color: var(--color-text);
+    color: var(--color-charcoal);
   }
 
   .contact-info {
@@ -529,35 +453,33 @@
   .contact-info p {
     margin: 0 0 0.5rem 0;
     font-size: 1.05rem;
-    color: var(--color-text);
+    color: var(--color-charcoal);
   }
 
   .contact-info strong {
-    color: var(--color-burgundy);
+    color: var(--color-dark);
     font-weight: 700;
-    text-transform: lowercase;
   }
 
   .parking-info h4 {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.2rem;
-    color: var(--color-burgundy);
+    color: var(--color-charcoal);
     margin: 0 0 0.75rem 0;
-    text-transform: lowercase;
-    letter-spacing: 0.02em;
+    font-weight: 600;
   }
 
   .parking-info p {
     margin: 0;
     font-size: 1.05rem;
-    line-height: 1.8;
+    line-height: 1.6;
+    color: var(--color-dark-grey);
   }
 
   .map-wrapper {
     border-radius: 8px;
     overflow: hidden;
-    border: 2px solid var(--color-pale-gold);
-    box-shadow: var(--shadow-warm);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   .map-container {
@@ -568,74 +490,54 @@
 
   /* Expect Section */
   .expect-section {
-    position: relative;
-    background: linear-gradient(135deg, var(--color-parchment) 0%, var(--color-cream) 100%);
+    background: var(--color-light-cream);
   }
 
   .expect-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
     margin-top: 4rem;
-    justify-items: center;
   }
   
-  .expect-grid .expect-card:nth-child(4) {
-    grid-column: 2;
+  @media (max-width: 768px) {
+    .expect-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .expect-card {
-    background: var(--color-parchment);
-    padding: 3rem 2rem;
+    background: var(--color-white);
+    padding: 40px;
     border-radius: 8px;
-    border: 2px solid var(--color-pale-gold);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .expect-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at top, rgba(212, 165, 116, 0.1) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   }
 
   .expect-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-deep);
-    border-color: var(--color-golden);
-  }
-
-  .expect-card:hover::before {
-    opacity: 1;
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
   }
 
   .expect-card h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-burgundy);
+    font-weight: 600;
+    color: var(--color-charcoal);
     margin: 0 0 1rem 0;
-    letter-spacing: 0.02em;
-    text-transform: lowercase;
   }
 
   .expect-card p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-dark-grey);
     margin: 0;
   }
 
   /* Bring Section */
   .bring-section {
-    background: var(--color-cream);
+    background: var(--color-white);
   }
 
   .bring-grid {
@@ -646,61 +548,58 @@
   }
 
   .bring-card {
-    background: var(--color-parchment);
-    padding: 3rem 2.5rem;
+    background: var(--color-light-cream);
+    padding: 40px;
     border-radius: 8px;
-    border-left: 6px solid var(--color-burnt-sienna);
-    box-shadow: var(--shadow-warm);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-left: 4px solid var(--color-gold);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
     text-align: left;
   }
 
   .bring-card:hover {
     transform: translateX(8px);
-    box-shadow: var(--shadow-deep);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   }
 
   .bring-number {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 3rem;
-    font-weight: 900;
-    color: var(--color-golden);
+    font-weight: 700;
+    color: var(--color-gold);
     line-height: 1;
     margin-bottom: 1rem;
-    opacity: 0.3;
+    opacity: 0.5;
   }
 
   .bring-card h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-burgundy);
+    font-weight: 600;
+    color: var(--color-charcoal);
     margin: 0 0 1rem 0;
-    letter-spacing: 0.02em;
-    text-transform: lowercase;
   }
 
   .bring-card p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-dark-grey);
     margin: 0;
   }
 
   /* Contact Section */
   .contact-section {
-    position: relative;
-    background: linear-gradient(135deg, var(--color-parchment) 0%, var(--color-cream) 100%);
+    background: var(--color-light-cream);
   }
 
   .contact-form {
     max-width: 700px;
     margin: 3rem auto 0;
-    background: var(--color-parchment);
-    padding: 3rem;
+    background: var(--color-white);
+    padding: 40px;
     border-radius: 8px;
-    border: 2px solid var(--color-pale-gold);
-    box-shadow: var(--shadow-warm);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
 
   .form-row {
@@ -722,24 +621,22 @@
   .form-group label {
     display: block;
     margin-bottom: 0.75rem;
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-burgundy);
-    letter-spacing: 0.05em;
-    text-transform: lowercase;
+    font-weight: 700;
+    color: var(--color-charcoal);
   }
 
   .form-group input,
   .form-group textarea {
     width: 100%;
     padding: 1rem 1.25rem;
-    border: 2px solid var(--color-pale-gold);
+    border: 2px solid var(--color-medium-gray);
     border-radius: 4px;
     font-family: var(--font-body);
-    font-size: 1.05rem;
-    background: var(--color-cream);
-    color: var(--color-text);
+    font-size: 1rem;
+    background: var(--color-white);
+    color: var(--color-charcoal);
     transition: all 0.3s ease;
     box-sizing: border-box;
   }
@@ -747,8 +644,8 @@
   .form-group input:focus,
   .form-group textarea:focus {
     outline: none;
-    border-color: var(--color-golden);
-    box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
   }
 
   .form-group textarea {
@@ -757,54 +654,49 @@
   }
 
   .submit-btn {
-    font-family: var(--font-display);
+    font-family: var(--font-body);
     font-size: 1.1rem;
-    font-weight: 600;
-    padding: 1.2rem 3rem;
+    font-weight: 700;
+    padding: 15px 40px;
     border: none;
     border-radius: 4px;
-    background: var(--color-burgundy);
-    color: var(--color-cream);
+    background: var(--color-gold);
+    color: var(--color-white);
     cursor: pointer;
-    letter-spacing: 0.05em;
-    text-transform: lowercase;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.3s ease;
     width: 100%;
     margin-top: 1rem;
   }
 
   .submit-btn:hover {
-    background: var(--color-deep-red);
+    background: #c29d2e;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(107, 28, 35, 0.3);
+    box-shadow: 0 6px 16px rgba(212, 175, 55, 0.3);
   }
 
   /* CTA Section */
   .cta-section {
-    position: relative;
-    background: linear-gradient(135deg, var(--color-burgundy) 0%, var(--color-deep-red) 100%);
-    color: var(--color-cream);
+    background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+    color: var(--color-white);
   }
 
-  .cta-section .section-title {
-    color: var(--color-pale-gold);
+  .section-title-alt {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--color-gold);
+    margin: 0 0 2rem 0;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
-  .cta-section .section-text {
-    color: var(--color-cream);
-  }
-
-  .cta-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(212, 165, 116, 0.2) 0%, transparent 70%);
-    border-radius: 50%;
-    animation: pulse-glow 10s ease-in-out infinite;
-    pointer-events: none;
+  .section-text-alt {
+    font-family: var(--font-body);
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--color-white);
   }
 
   .cta-buttons {
@@ -815,43 +707,38 @@
     margin-top: 3rem;
   }
 
-  .cta-button {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 1.2rem 3rem;
+  .cta-button-secondary,
+  .cta-button-tertiary {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 15px 35px;
     border-radius: 4px;
     text-decoration: none;
-    letter-spacing: 0.05em;
-    text-transform: lowercase;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.3s ease;
     display: inline-block;
   }
 
-  .cta-button.primary {
-    background: var(--color-golden);
-    color: var(--color-burgundy);
-    box-shadow: 0 4px 20px rgba(212, 165, 116, 0.3);
+  .cta-button-secondary {
+    background: var(--color-gold);
+    color: var(--color-white);
   }
 
-  .cta-button.primary:hover {
-    background: var(--color-pale-gold);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(212, 165, 116, 0.5);
+  .cta-button-secondary:hover {
+    background: #c29d2e;
+    transform: translateY(-2px);
   }
 
-  .cta-button.secondary {
+  .cta-button-tertiary {
     background: transparent;
-    color: var(--color-pale-gold);
-    border: 2px solid var(--color-pale-gold);
+    color: var(--color-white);
+    border: 2px solid var(--color-white);
   }
 
-  .cta-button.secondary:hover {
-    background: rgba(232, 212, 184, 0.1);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(232, 212, 184, 0.2);
+  .cta-button-tertiary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
   }
-
 
   /* Responsive Design */
   @media (min-width: 768px) {
@@ -871,8 +758,7 @@
 
   @media (max-width: 768px) {
     .hero-section {
-      min-height: 70vh;
-      padding: 3rem 1.5rem;
+      height: 50vh;
     }
 
     .content-section {
@@ -880,31 +766,40 @@
     }
 
     .services-grid,
+    .expect-grid,
     .bring-grid {
-      gap: 2rem;
-    }
-    
-    .expect-grid {
       grid-template-columns: 1fr;
       gap: 2rem;
     }
-    
-    .expect-grid .expect-card:nth-child(4) {
-      grid-column: 1;
-    }
 
     .contact-form {
-      padding: 2rem;
+      padding: 30px;
     }
 
     .cta-buttons {
       flex-direction: column;
-      align-items: stretch;
-      gap: 1rem;
+      align-items: center;
     }
 
-    .cta-button {
+    .cta-button-secondary,
+    .cta-button-tertiary {
       width: 100%;
+      max-width: 300px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-content {
+      padding: 1rem;
+    }
+
+    .hero-title {
+      letter-spacing: 0.1em;
+    }
+
+    .section-title,
+    .section-title-alt {
+      letter-spacing: 0.08em;
     }
   }
 </style>
