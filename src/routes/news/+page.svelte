@@ -6,9 +6,16 @@
 
   /** @type {{ posts?: any[] }} */
   export let data;
-  const posts = data?.posts || [];
 
   let mounted = false;
+  let localPosts = data?.posts?.map(post => ({ ...post, expanded: false })) || [];
+
+  function togglePost(index) {
+    // Create a new array to trigger Svelte's reactivity
+    localPosts = localPosts.map((post, i) =>
+      i === index ? { ...post, expanded: !post.expanded } : post
+    );
+  }
 
   onMount(() => {
     mounted = true;
@@ -37,31 +44,31 @@
 
   <!-- News Grid Section -->
   <section class="news-section">
-    {#if posts.length === 0}
+    {#if localPosts.length === 0}
       <div class="empty-state">
         <p>No news posts available at the moment.</p>
         <p class="empty-subtitle">Check back soon for updates from our community.</p>
       </div>
     {:else}
       <div class="news-grid">
-        {#each posts as post}
-          <article class="news-card">
+        {#each localPosts as post, i}
+          <article class="news-card" class:expanded={post.expanded}>
             {#if post.ImageURL}
               <div class="card-image-container">
                 <img src={post.ImageURL} alt={post.Title} class="card-image" />
               </div>
             {/if}
-            
+
             <div class="card-content">
               {#if post.Date}
                 <span class="card-date">{post.Date}</span>
               {/if}
-              
+
               <h2 class="card-title">{post.Title}</h2>
-              
+
               <p class="card-excerpt">{post.Content}</p>
-              
-              <a href="#" class="read-more">Read More →</a>
+
+              <button class="read-more" on:click={() => togglePost(i)}>{post.expanded ? 'Read Less ↑' : 'Read More →'}</button>
             </div>
           </article>
         {/each}
@@ -206,9 +213,13 @@
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, height 0.4s ease;
     display: flex;
     flex-direction: column;
+  }
+
+  .news-card.expanded {
+    height: auto;
   }
 
   .news-card:hover {
@@ -274,6 +285,15 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    transition: all 0.3s ease;
+    max-height: 4.8em; /* Approximately 3 lines with line-height 1.6 */
+  }
+
+  .news-card.expanded .card-excerpt {
+    display: block;
+    -webkit-line-clamp: none;
+    max-height: none;
+    overflow: visible;
   }
 
   .read-more {
@@ -283,6 +303,12 @@
     color: var(--color-gold);
     text-decoration: none;
     transition: text-decoration 0.2s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    text-align: left;
   }
 
   .read-more:hover {
