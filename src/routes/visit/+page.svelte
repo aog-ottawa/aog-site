@@ -10,6 +10,59 @@
   let map: L.Map;
   let mounted = false;
 
+  // Form state management
+  let isSubmitting = false;
+  let submitStatus: 'idle' | 'success' | 'error' = 'idle';
+  let formData = {
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+    date: ''
+  };
+
+  // Google Apps Script Web App URL
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzLk5vUcVIe2oYEL-7tIcAeuXzrqFZS1PmXTAkUcOawDqeNm6ljguck85PRq95UbXVMeA/exec';
+
+  async function handleSubmit(event: Event) {
+    event.preventDefault();
+    
+    // Reset status
+    submitStatus = 'idle';
+    isSubmitting = true;
+
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        submitStatus = 'success';
+        // Clear form
+        formData = {
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+          date: ''
+        };
+      } else {
+        submitStatus = 'error';
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      submitStatus = 'error';
+    } finally {
+      isSubmitting = false;
+    }
+  }
+
   onMount(async () => {
     mounted = true;
     
@@ -182,26 +235,69 @@
       <h2 class="section-title">GET IN TOUCH</h2>
       <p class="section-text">Have questions or want to learn more? We'd love to hear from you!</p>
       <div class="contact-form">
-        <form>
+        <form on:submit|preventDefault={handleSubmit}>
           <div class="form-row">
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" id="name" name="name" required>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                bind:value={formData.name}
+                required
+                disabled={isSubmitting}
+              >
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" required>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                bind:value={formData.email}
+                required
+                disabled={isSubmitting}
+              >
             </div>
           </div>
           <div class="form-group">
             <label for="phone">Phone (optional)</label>
-            <input type="tel" id="phone" name="phone">
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              bind:value={formData.phone}
+              disabled={isSubmitting}
+            >
           </div>
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell us about yourself or ask any questions..."></textarea>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="Tell us about yourself or ask any questions..."
+              bind:value={formData.message}
+              disabled={isSubmitting}
+            ></textarea>
           </div>
-          <button type="submit" class="submit-btn">Send Message</button>
+          <button type="submit" class="submit-btn" disabled={isSubmitting}>
+            {isSubmitting ? 'Sending...' : 'Send Message'}
+          </button>
+          
+          {#if submitStatus === 'success'}
+            <div class="status-message success-message">
+              <i data-lucide="check-circle" class="status-icon"></i>
+              <p>Thank you! Your message has been sent successfully. We'll get back to you soon.</p>
+            </div>
+          {/if}
+          
+          {#if submitStatus === 'error'}
+            <div class="status-message error-message">
+              <i data-lucide="alert-circle" class="status-icon"></i>
+              <p>Sorry, there was an error sending your message. Please try again or contact us directly.</p>
+            </div>
+          {/if}
         </form>
       </div>
     </div>
@@ -668,10 +764,83 @@
     margin-top: 1rem;
   }
 
-  .submit-btn:hover {
+  .submit-btn:hover:not(:disabled) {
     background: #c29d2e;
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(212, 175, 55, 0.3);
+  }
+
+  .submit-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* Status Messages */
+  .status-message {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: 4px;
+    margin-top: 1.5rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.5;
+    animation: slideIn 0.3s ease-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .success-message {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+  }
+
+  .error-message {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+  }
+
+  .status-message p {
+    margin: 0;
+    flex: 1;
+  }
+
+  .status-icon {
+    flex-shrink: 0;
+  }
+
+  .success-message :global(.status-icon) {
+    color: #28a745;
+    width: 24px;
+    height: 24px;
+  }
+
+  .error-message :global(.status-icon) {
+    color: #dc3545;
+    width: 24px;
+    height: 24px;
+  }
+
+  .form-group input:disabled,
+  .form-group textarea:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
   }
 
   /* CTA Section */
