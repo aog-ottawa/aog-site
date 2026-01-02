@@ -1,6 +1,11 @@
 <footer class="footer">
   <div class="container">
-    <p class="footer-verse">"For where two or three gather in my name, there am I with them." — Matthew 18:20</p>
+    <p class="footer-verse">
+      "For where two or three gather in my name, there am I with them."
+    </p>
+    <p class="footer-verse">
+      <cite>— Matthew 18:20</cite>
+    </p>
     <p class="footer-copyright">&copy; {new Date().getFullYear()} Assemblies of God Ottawa. All rights reserved.</p>
     <p class="footer-designer"><small>Web design by <a href="https://github.com/905timur" target="_blank" rel="noopener noreferrer">Timur Gabaidulin</a>.</small></p>
   </div>
@@ -30,6 +35,14 @@
     margin-left: auto;
     margin-right: auto;
     line-height: 1.8;
+  }
+
+  .footer-verse cite {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-size: 0.9em;
+    opacity: 0.9;
   }
 
   .footer-copyright {

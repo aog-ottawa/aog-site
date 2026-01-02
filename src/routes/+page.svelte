@@ -141,10 +141,11 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-image: url('https://source.unsplash.com/random/1920x1080/?church,worship');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: linear-gradient(
+      180deg,
+      #2e3137 0%,
+      #3b4250 100%
+    );
   }
 
   .hero-overlay {
@@ -153,11 +154,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
-      135deg, 
-      rgba(0, 0, 0, 0.5) 0%, 
-      rgba(0, 0, 0, 0.6) 100%
-    );
+    background: transparent;
   }
 
   .hero-content {
@@ -210,8 +207,8 @@
     width: 120px;
     height: auto;
     margin-bottom: 20px;
-    filter: invert(100%) brightness(200%);
-    opacity: 0.9;
+    filter: brightness(0) saturate(100%) invert(98%) sepia(1%) saturate(0%) hue-rotate(25deg) brightness(98%) contrast(95%);
+    opacity: 0.95;
   }
 
   .cta-button {
