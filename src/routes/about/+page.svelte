@@ -193,9 +193,11 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-image: url('https://source.unsplash.com/random/1920x1080/?church,faith');
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(
+      180deg,
+      #2e3137 0%,
+      #3b4250 100%
+    );
   }
 
   .hero-overlay {
@@ -204,11 +206,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
-      135deg, 
-      rgba(0, 0, 0, 0.5) 0%, 
-      rgba(0, 0, 0, 0.6) 100%
-    );
+    background: transparent;
   }
 
   .hero-content {
